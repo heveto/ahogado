@@ -1,0 +1,119 @@
+/* Pantalla PC básica */
+
+    .contenedor {        
+        display: flex;
+        height: 100vh;
+        background: #F3F5FC;
+        color: #0a3871;
+        font-family: 'Montserrat', sans-serif;        
+    }
+
+    .logo {
+        position: absolute ;       
+        top: 2em;
+        left: 1em;
+    }
+
+    .bloque1 {
+        float: left;        
+        margin-top: 58vh;
+        margin-left: 5vw;
+        display: block;
+    }
+
+    .bloque2 {  
+
+        display: none;       
+    }
+
+    .bloque3 {
+
+        display: none;       
+    }
+
+    .boton1 {
+        position: absolute;
+        width: 22vw;
+        height: 4em;
+        font-size: 1em;
+        color: white;
+        background: #0A3871;
+        border-radius: 1.4em;
+        text-align: center;
+        transition: 0.5s all;
+        cursor: pointer;
+    }
+
+    .boton2 {
+        position: absolute;
+        width: 22vw;
+        height: 4em;
+        font-size: 1em;
+        color: #0A3871;
+        background: #F3F5FC;
+        border-radius: 1.4em;
+        text-align: center;
+        transition: 0.5s all;
+        cursor: pointer;
+    }
+
+    .boton1:hover, .boton2:hover {
+        transform: scale(1.04);
+    }
+
+    #botonA {        
+        left: 39vw;
+        top: 35vh;
+        height: 7em;
+    }
+
+    #botonB {
+        left: 39vw;
+        top: 55vh;
+    }
+
+    .mensaje {
+        position: absolute;       
+        top: 20vh;
+        left: 25vw;
+        width: 33vw;
+        height: 4rem;
+        background: #F3F5FC;
+        border-style: hidden;
+        border-color: #F3F5FC;
+        color: #0a3871;
+        font-size: 2em;
+    }
+
+    #leyenda { 
+        position: absolute;              
+        top: 76vh;
+        left: 25vw;
+        font-size: 12px;
+        opacity: 80%;
+    }
+
+    #botonC {
+        top: 80vh;
+        left: 25vw;        
+    }
+
+    #botonD {
+        position: absolute;
+        top: 80vh;
+        left: 50vw;
+    }
+
+    canvas {
+        position: absolute;
+        top: 5vh;
+        left: 36vw;
+        background: lightgrey;
+    }
+
+    .pizarra {
+
+    }
+
+
+

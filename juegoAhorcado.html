@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Juego del Ahorcado</title>
+        <link rel="stylesheet" type="text/css" href="reset.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="script.js"></script>
+    </head>
+
+    <body>
+        <header>
+            
+        </header>
+
+        <main class="contenedor">
+            <section>
+                <h1><img src="imagenes/Logo.png" class="logo"></h1>
+                <label for="mensaje"></label>
+            </section>
+
+            <section id="bloque1" class="bloque1">
+                <div>
+                    <input type="submit" value="Iniciar Juego" class="boton1" id="botonA" onclick="iniciarJuego()">
+                    <input type="submit" value="Agregar palabra" class="boton2" id="botonB" onclick="agregarPalabra()">
+                </div>       
+            </section>
+
+            <section id="bloque2" class="bloque2">
+                <div>
+                    <input id="cadena" type="textarea" class="mensaje" required placeholder="Ingrese una palabra">    
+
+                    <label id="leyenda"><img src="imagenes/Vector.png"> Máximo 8 letras</label>
+                </div>               
+                <div>
+                    <input type="submit" value="Guardar e iniciar" class="boton1" id="botonC" onclick="guardar()">
+                    <input type="submit" value="Cancelar" class="boton2" id="botonD" onclick="cancelar()">
+                </div>       
+            </section>
+            
+            <section id="bloque3" class="bloque3">
+                <div>
+                    <<canvas width="360" height="360"></canvas>
+                             
+                </div>               
+                <div>
+                    <input type="submit" value="Nuevo Juego" class="boton1" id="botonC" onclick="iniciarJuego()">
+                    <input type="submit" value="Desistir" class="boton2" id="botonD" onclick="desistir()">
+                </div>       
+            </section>
+        </main>
+
+        <footer>
+
+        </footer>
+    </body>
+</html>
