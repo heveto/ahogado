@@ -45,9 +45,18 @@
             
             <section id="bloque3" class="bloque3">
                 <div>
-                    <<canvas width="360" height="360"></canvas>
-                             
-                </div>               
+                    <canvas width="360" height="360"></canvas>
+
+                    <div id="pista"></div>
+                    <div id="letErroneas"></div>
+                </div>
+                
+                <input type="text" onkeypress="teclado();"> 
+                
+                <div class="resultado">    
+                    <div id="let1"></div><div id="let2"></div><div id="let3"></div><div id="let4"></div><div id="let5"></div><div id="let6"></div><div id="let7"></div><div id="let8"></div>     
+                </div>
+
                 <div>
                     <input type="submit" value="Nuevo Juego" class="boton1" id="botonC" onclick="iniciarJuego()">
                     <input type="submit" value="Desistir" class="boton2" id="botonD" onclick="desistir()">

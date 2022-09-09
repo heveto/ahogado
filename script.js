@@ -7,12 +7,20 @@ function mostrar() {
 
 function iniciarJuego(argument) {
 	// body...
+	var palabra = "ACARREAR";
 	mostrar();
 	bloque1.style.display = "none";
 	bloque2.style.display = "none";
 	bloque3.style.display = "block";
 
-	dibujarAhorcado();
+	mostraPista(palabra);
+
+	dibujarAhorcado(0);
+	dibujarAhorcado(1);
+	dibujarAhorcado(2);
+	dibujarAhorcado(3);
+	dibujarAhorcado(7);
+
 }
 
 function agregarPalabra(argument) {
@@ -55,41 +63,94 @@ function dibujarAhorcado(error) {
 	trazo.strokeStyle = "darkblue";   //propiedad
 	trazo.beginPath();
 	trazo.lineWidth = 5;
+	console.log(error);
 
+	switch(error) {
+        case 0: // horca
+			trazo.moveTo(30,350);
+			trazo.lineTo(330,350);
+			trazo.moveTo(110,350);
+			trazo.lineTo(110,10);
+			trazo.lineTo(280,10);
+			trazo.stroke();
+			break;
 
-	trazo.moveTo(30,350);
-	trazo.lineTo(330,350);
-	trazo.stroke();
+		case 1: // Cuerda
+			trazo.moveTo(280,10);
+			trazo.lineTo(280,60);
+			trazo.stroke();
+				break;
 
-	trazo.moveTo(110,350);
-	trazo.lineTo(110,10);
-	trazo.stroke();
+		case 2: // Cabeza
+			trazo.arc(280,100,40,0,2*Math.PI);
+			trazo.stroke();
+			break;
 
-	trazo.lineTo(280,10);
-	trazo.stroke();
+		case 3: // Tronco
+			trazo.moveTo(280,140);
+			trazo.lineTo(280,220);
+			trazo.stroke();
+			break;
 
-	trazo.lineTo(280,60);
-	trazo.stroke();
+		case 4: // Brazo izq
+			trazo.moveTo(280,140);
+			trazo.lineTo(240,200);
+			trazo.stroke();
+			break;
 
-	trazo.arc(280,100,40,0,2*Math.PI);
+		case 5: // Brazo der
+			trazo.moveTo(280,140);
+			trazo.lineTo(320,200);
+			trazo.stroke();
+			break;
 
-	trazo.moveTo(280,140);
-	trazo.lineTo(280,220);
-	trazo.stroke();
+		case 6: // Pierna izq
+			trazo.moveTo(280,220);
+			trazo.lineTo(240,300);
+			trazo.stroke();
+			break;
 
-	trazo.moveTo(280,140);
-	trazo.lineTo(240,200);
-	trazo.moveTo(280,140);
-	trazo.lineTo(320,200);
-	trazo.stroke();
+		case 7: // Pierna der
+			trazo.moveTo(280,220);
+			trazo.lineTo(320,300);
+			trazo.stroke();
+			break;
 
-	trazo.moveTo(280,220);
-	trazo.lineTo(240,300);
-	trazo.moveTo(280,220);
-	trazo.lineTo(320,300);
-	trazo.stroke();
+		default:
+			trazo.clearRect(0, 0, pantalla.width, pantalla.height);
+			error = 0;
+			break;
+	}
+}
 
-	//trazo.clearRect(0, 0, pantalla.width, pantalla.height);
+function mostraPista(palabra) {
+	// body...
+	var clue = "";
+
+	for (var i = 0; i < palabra.length; i++) {
+		clue += "_ ";		
+	}
+	document.getElementById("pista").innerHTML = clue;
+}
+
+function teclado () {
+	console.log("pulso");
+	//Almacenamos en valor de la tecla pulsada
+	var teclaPulsada = event.keyCode;
+	var letErroneas = "";
+
+	letErroneas += teclaPulsada;
+
+	document.getElementById("let1").innerHTML = palabra[0];
+	document.getElementById("let2").innerHTML = palabra[1];
+	document.getElementById("let3").innerHTML = palabra[2];
+	document.getElementById("let4").innerHTML = palabra[3];
+	document.getElementById("let5").innerHTML = palabra[4];
+	document.getElementById("let6").innerHTML = palabra[5];
+	document.getElementById("let7").innerHTML = palabra[6];
+	document.getElementById("let8").innerHTML = palabra[7];
+
+	return document.getElementById("letErroneas").innerHTML = letErroneas;
 }
 
 function name(argument) {
