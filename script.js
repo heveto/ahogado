@@ -1,3 +1,9 @@
+var palabra = "";
+var clue = "";
+var letErroneas = "";
+var asistertos = 0;
+var errores = 0;
+
 function mostrar() {
 	// Habilita selección de cada frame.
 	var bloque1 = document.querySelector(".bloque1");
@@ -7,7 +13,7 @@ function mostrar() {
 
 function iniciarJuego(argument) {
 	// body...
-	var palabra = "ACARREAR";
+	palabra = "ACARREAR";
 	mostrar();
 	bloque1.style.display = "none";
 	bloque2.style.display = "none";
@@ -21,6 +27,13 @@ function iniciarJuego(argument) {
 	dibujarAhorcado(3);
 	dibujarAhorcado(7);
 
+}
+
+function reiniciarJuego () {
+	// body...
+	palabra = "";
+	asistertos = 0;
+	errores = 0;
 }
 
 function agregarPalabra(argument) {
@@ -125,8 +138,6 @@ function dibujarAhorcado(error) {
 
 function mostraPista(palabra) {
 	// body...
-	var clue = "";
-
 	for (var i = 0; i < palabra.length; i++) {
 		clue += "_ ";		
 	}
@@ -136,24 +147,36 @@ function mostraPista(palabra) {
 function teclado () {
 	console.log("pulso");
 	//Almacenamos en valor de la tecla pulsada
-	var teclaPulsada = event.keyCode;
-	var letErroneas = "";
-
-	letErroneas += teclaPulsada;
-
-	document.getElementById("let1").innerHTML = palabra[0];
-	document.getElementById("let2").innerHTML = palabra[1];
-	document.getElementById("let3").innerHTML = palabra[2];
-	document.getElementById("let4").innerHTML = palabra[3];
-	document.getElementById("let5").innerHTML = palabra[4];
-	document.getElementById("let6").innerHTML = palabra[5];
-	document.getElementById("let7").innerHTML = palabra[6];
-	document.getElementById("let8").innerHTML = palabra[7];
-
-	return document.getElementById("letErroneas").innerHTML = letErroneas;
 }
 
-function name(argument) {
-	// body...
+function teclaPulsada (event,palabra) {
+	//Almacenamos en valor de la tecla pulsada
+	var teclaPulsada = event.keyCode;
+	var correcta = false;
+	var pos = 0;
+	console.log("pulsado");
 
+	for (var i = 0; i < palabra.length; i++) {
+		if (leclaPulsada == palabra[i]) {
+			clue[pos] = palabra[i];
+			correcta = true;
+			asistertos++;
+		}
+		pos = i*2;		
+	}
+
+	if (asistertos == palabra.length) {
+		// Ganaste...
+	}
+
+	if (errores == 8) {
+		// Perdiste...
+	}
+
+	if (correcta == false) {
+		letErroneas += teclaPulsada + " ";
+	}
+	document.getElementById("pista").innerHTML = clue; 
+	// document.getElementById("letErroneas").innerHTML = "E M P O ";
+	// document.getElementById("letErroneas").innerHTML = letErroneas;	
 }

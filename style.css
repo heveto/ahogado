@@ -116,54 +116,6 @@
         font-weight: bold;
     }
 
-    #let1 {
-        position: absolute;
-        top: 55vh;
-        left: 32vw;
-    }
-
-    #let2 {
-        position: absolute;
-        top: 55vh;
-        left: 36.2vw;
-    }
-
-    #let3 {
-        position: absolute;
-        top: 55vh;
-        left: 40.5vw;
-    }
-
-    #let4 {
-        position: absolute;
-        top: 55vh;
-        left: 44.7vw;
-    }
-
-    #let5 {
-        position: absolute;
-        top: 55vh;
-        left: 49vw;
-    }
-
-    #let6 {
-        position: absolute;
-        top: 55vh;
-        left: 53.3vw;
-    }
-
-    #let7 {
-        position: absolute;
-        top: 55vh;
-        left: 57.5vw;
-    }
-
-    #let8 {
-        position: absolute;
-        top: 55vh;
-        left: 61.8vw;
-    }
-
     #pista {
         position: absolute;
         top: 56vh;
@@ -174,17 +126,70 @@
 
     #letErroneas {
         position: absolute;
-        top: 60vh;
+        top: 70vh;
         left: 32vw;
         font-size: 2em;
         font-weight: bold;
+        color: grey;
     }
 
+@media screen and (max-width: 940px) {
+
+    canvas {
+        top: 15vh;
+        left: 28vw;
+    }
+
+    .boton1, .boton2 {
+        width: 30vw;
+    }
+
+    #botonC {
+        left: 20vw;
+    } 
+
+    #botonD {
+        left: 55vw;
+    }
+
+    #pista {
+        left: 22vw;
+    }
+
+    #letErroneas {
+        left: 32vw;
+    }
 }
 
-.flex-col-center{
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
+@media screen and (max-width: 480px) {
+
+    canvas {
+        top: 12vh;
+        left: 10vw;
+    }
+
+    .boton1, .boton2 {
+        width: 45vw;
+    }
+
+    #botonA, #botonB {
+        left: 28vw;
+    } 
+
+    #botonC {
+        left: 8vw;
+    } 
+
+    #botonD {
+        left: 58vw;
+    }
+
+    #pista {
+        font-size: 3em;
+        left: 10vw;
+    }
+
+    #letErroneas {
+        left: 20vw;
+    }
 }
