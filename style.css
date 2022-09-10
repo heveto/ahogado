@@ -111,14 +111,71 @@
         background: lightgrey;
     }
 
-    .resultado {
+    .letra {
         font-size: 4em;
         font-weight: bold;
     }
 
+    #let1 {
+        position: absolute;
+        top: 55vh;
+        left: 32vw;
+    }
+
+    #let2 {
+        position: absolute;
+        top: 55vh;
+        left: 36.2vw;
+    }
+
+    #let3 {
+        position: absolute;
+        top: 55vh;
+        left: 40.5vw;
+    }
+
+    #let4 {
+        position: absolute;
+        top: 55vh;
+        left: 44.7vw;
+    }
+
+    #let5 {
+        position: absolute;
+        top: 55vh;
+        left: 49vw;
+    }
+
+    #let6 {
+        position: absolute;
+        top: 55vh;
+        left: 53.3vw;
+    }
+
+    #let7 {
+        position: absolute;
+        top: 55vh;
+        left: 57.5vw;
+    }
+
+    #let8 {
+        position: absolute;
+        top: 55vh;
+        left: 61.8vw;
+    }
+
+    #resultado {
+        position: absolute;
+        top: 25vh;
+        left: 38vw;
+        font-size: 4em;
+        font-weight: bold;
+        color: violet;
+    }
+
     #pista {
         position: absolute;
-        top: 56vh;
+        top: 58vh;
         left: 32vw;
         font-size: 5.1em;
         font-weight: bold;
@@ -126,7 +183,7 @@
 
     #letErroneas {
         position: absolute;
-        top: 70vh;
+        top: 72vh;
         left: 32vw;
         font-size: 2em;
         font-weight: bold;

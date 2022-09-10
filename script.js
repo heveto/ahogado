@@ -3,12 +3,41 @@ var clue = "";
 var letErroneas = "";
 var asistertos = 0;
 var errores = 0;
+var correcta = false;
 
 function mostrar() {
 	// Habilita selección de cada frame.
 	var bloque1 = document.querySelector(".bloque1");
 	var bloque2 = document.querySelector(".bloque2");
 	var bloque3 = document.querySelector(".bloque3");
+}
+
+function limpiar() {
+	// body...
+	var pantalla = document.querySelector("canvas");
+	var trazo = pantalla.getContext("2d");
+	trazo.clearRect(0,0,360,360);
+	trazo.fillStyle = "lightgrey";
+    trazo.fillRect(0,0,360,360);
+    
+	palabra = "";
+	clue = "";
+	letErroneas = "";
+	asistertos = 0;
+	errores = 0;
+
+	document.getElementById("let1").innerHTML = "";
+	document.getElementById("let2").innerHTML = "";
+	document.getElementById("let3").innerHTML = "";
+	document.getElementById("let4").innerHTML = "";
+	document.getElementById("let5").innerHTML = "";
+	document.getElementById("let6").innerHTML = "";
+	document.getElementById("let7").innerHTML = "";
+	document.getElementById("let8").innerHTML = "";
+
+	document.getElementById("pista").innerHTML = "";
+	document.getElementById("resultado").innerHTML = "";
+	document.getElementById("letErroneas").innerHTML = "";
 }
 
 function iniciarJuego(argument) {
@@ -20,20 +49,13 @@ function iniciarJuego(argument) {
 	bloque3.style.display = "block";
 
 	mostraPista(palabra);
-
 	dibujarAhorcado(0);
-	dibujarAhorcado(1);
-	dibujarAhorcado(2);
-	dibujarAhorcado(3);
-	dibujarAhorcado(7);
 
 }
 
-function reiniciarJuego () {
-	// body...
-	palabra = "";
-	asistertos = 0;
-	errores = 0;
+function reiniciarJuego () {	
+	limpiar();
+	iniciarJuego();
 }
 
 function agregarPalabra(argument) {
@@ -50,6 +72,8 @@ function guardar(argument) {
 	bloque1.style.display = "none";
 	bloque2.style.display = "none";
 	bloque3.style.display = "block";
+
+	limpiar();
 }
 
 function cancelar(argument) {
@@ -58,6 +82,8 @@ function cancelar(argument) {
 	bloque1.style.display = "block";
 	bloque2.style.display = "none";
 	bloque3.style.display = "none";
+
+	limpiar();
 }
 
 function desistir(argument) {
@@ -66,6 +92,8 @@ function desistir(argument) {
 	bloque1.style.display = "block";
 	bloque2.style.display = "none";
 	bloque3.style.display = "none";
+
+	limpiar();
 }
 
 function dibujarAhorcado(error) {
@@ -136,47 +164,102 @@ function dibujarAhorcado(error) {
 	}
 }
 
-function mostraPista(palabra) {
+function mostraPista() {
 	// body...
+	document.getElementById("pista").innerHTML = "";
 	for (var i = 0; i < palabra.length; i++) {
 		clue += "_ ";		
 	}
 	document.getElementById("pista").innerHTML = clue;
 }
 
-function teclado () {
-	console.log("pulso");
-	//Almacenamos en valor de la tecla pulsada
+function revisarTecla (teclaPulsada) {
+	//Muestra letra si coincidio con la tecla pulsada.
+	correcta = false;
+
+	if (teclaPulsada == palabra[0]) {
+		document.getElementById("let1").innerHTML = palabra[0];
+		correcta = true;
+		asistertos++;
+	}
+
+	if (teclaPulsada == palabra[1]) {
+		document.getElementById("let2").innerHTML = palabra[1];
+		correcta = true;
+		asistertos++;
+	}
+	
+	if (teclaPulsada == palabra[2]) {
+		document.getElementById("let3").innerHTML = palabra[2];
+		correcta = true;
+		asistertos++;
+	}
+
+	if (teclaPulsada == palabra[3]) {
+		document.getElementById("let4").innerHTML = palabra[3];
+		correcta = true;
+		asistertos++;
+	}
+	
+	if (teclaPulsada == palabra[4]) {
+		document.getElementById("let5").innerHTML = palabra[4];
+		correcta = true;
+		asistertos++;
+	}
+
+	if (teclaPulsada == palabra[5]) {
+		document.getElementById("let6").innerHTML = palabra[5];
+		correcta = true;
+		asistertos++;
+	}
+	
+	if (teclaPulsada == palabra[6]) {
+		document.getElementById("let7").innerHTML = palabra[6];
+		correcta = true;
+		asistertos++;
+	}
+
+	if (teclaPulsada == palabra[7]) {
+		document.getElementById("let8").innerHTML = palabra[7];
+		correcta = true;
+		asistertos++;
+	}
 }
 
-function teclaPulsada (event,palabra) {
+function teclaPulsada (event) {
 	//Almacenamos en valor de la tecla pulsada
-	var teclaPulsada = event.keyCode;
-	var correcta = false;
+	var teclaPulsada = event;
+	
 	var pos = 0;
-	console.log("pulsado");
 
-	for (var i = 0; i < palabra.length; i++) {
-		if (leclaPulsada == palabra[i]) {
-			clue[pos] = palabra[i];
-			correcta = true;
-			asistertos++;
-		}
-		pos = i*2;		
+	if (errores <= 7) {
+		revisarTecla(teclaPulsada);
 	}
 
 	if (asistertos == palabra.length) {
 		// Ganaste...
+		document.getElementById("resultado").innerHTML = "Ganaste !";
+		console.log("ganaste");
 	}
 
-	if (errores == 8) {
-		// Perdiste...
-	}
-
-	if (correcta == false) {
+	if (errores<=7 && correcta == false) {
 		letErroneas += teclaPulsada + " ";
+		errores ++;
+
+		dibujarAhorcado(errores);
 	}
-	document.getElementById("pista").innerHTML = clue; 
-	// document.getElementById("letErroneas").innerHTML = "E M P O ";
-	// document.getElementById("letErroneas").innerHTML = letErroneas;	
+
+	if (errores == 7) {
+		// Perdiste...
+		document.getElementById("resultado").innerHTML = "Perdiste !";
+		console.log("perdiste");
+	}
+	document.getElementById("letErroneas").innerHTML = letErroneas;	
 }
+
+document.addEventListener('keypress', (event) => {
+	var tecla = event.key.toUpperCase();
+	console.log("Tecla precionada: " + tecla);
+
+	teclaPulsada(tecla);
+});
