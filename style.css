@@ -1,4 +1,4 @@
-/* Pantalla PC básica */
+/* Pantalla PC básica 1440 */
 
     .contenedor {        
         display: flex;
@@ -108,7 +108,7 @@
         position: absolute;
         top: 5vh;
         left: 36vw;
-        background: lightgrey;
+        background: #F3F5FC;
     }
 
     .letra {
@@ -125,59 +125,59 @@
     #let2 {
         position: absolute;
         top: 55vh;
-        left: 36.2vw;
+        left: 37vw;
     }
 
     #let3 {
         position: absolute;
         top: 55vh;
-        left: 40.5vw;
+        left: 42vw;
     }
 
     #let4 {
         position: absolute;
         top: 55vh;
-        left: 44.7vw;
+        left: 47vw;
     }
 
     #let5 {
         position: absolute;
         top: 55vh;
-        left: 49vw;
+        left: 52vw;
     }
 
     #let6 {
         position: absolute;
         top: 55vh;
-        left: 53.3vw;
+        left: 57vw;
     }
 
     #let7 {
         position: absolute;
         top: 55vh;
-        left: 57.5vw;
+        left: 62vw;
     }
 
     #let8 {
         position: absolute;
         top: 55vh;
-        left: 61.8vw;
+        left: 67vw;
     }
 
     #resultado {
         position: absolute;
         top: 25vh;
-        left: 38vw;
+        left: 39vw;
         font-size: 4em;
         font-weight: bold;
-        color: violet;
+        color: red;
     }
 
     #pista {
         position: absolute;
         top: 58vh;
         left: 32vw;
-        font-size: 5.1em;
+        font-size: 5.2em;
         font-weight: bold;
     }
 
@@ -192,13 +192,22 @@
 
 @media screen and (max-width: 940px) {
 
+    .contenedor {
+        width: 100vh;
+        height: 145vh;
+    }
+
     canvas {
         top: 15vh;
         left: 28vw;
     }
 
     .boton1, .boton2 {
-        width: 30vw;
+        width: 33vw;
+    }
+
+    #botonA, #botonB {
+        left: 50vw;
     }
 
     #botonC {
@@ -209,6 +218,39 @@
         left: 55vw;
     }
 
+    #let1 {
+        left: 22vw;
+    }
+
+    #let2 {
+        left: 30vw;
+    }
+
+    #let3 {
+        left: 38vw;
+    }
+
+    #let4 {
+        left: 46vw;
+    }
+
+    #let5 {
+        left: 54vw;
+    }
+
+    #let6 {
+
+        left: 62vw;
+    }
+
+    #let7 {
+        left: 70vw;
+    }
+
+    #let8 {
+        left: 78vw;
+    }
+
     #pista {
         left: 22vw;
     }
@@ -216,12 +258,22 @@
     #letErroneas {
         left: 32vw;
     }
+
+    #resultado {
+        left: 33vw;
+    }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 580px) {
+
+    .contenedor {
+        width: 100vw;
+        height: 100vh;
+        background: #F3F5FC;
+    }
 
     canvas {
-        top: 12vh;
+        top: 10vh;
         left: 10vw;
     }
 
@@ -241,12 +293,124 @@
         left: 58vw;
     }
 
+    .letra {
+        font-size: 2.5em;
+    }
+
+    #let1, #let2, #let3, #let4, 
+    #let5, #let6, #let7, #let8 {
+        top: 65vh;
+    }
+
     #pista {
-        font-size: 3em;
-        left: 10vw;
+        font-size: 3.5em;
+        top: 66vh;
+        left: 22vw;
     }
 
     #letErroneas {
-        left: 20vw;
+        top: 74vh;
+        left: 22vw;
+    }
+
+    #resultado {
+        font-size: 3em;
+        top: 35vh;
+        left: 22vw;
+    }
+}
+
+@media screen and (max-width: 420px) {
+
+    .contenedor {
+        width: 100vw;
+        height: 100vh;
+        background: #F3F5FC;
+    }
+
+    .logo {      
+        top: 0.5em;
+    }
+
+    canvas {
+        top: 10vh;
+        left: 2vw;
+    }
+
+    .boton1, .boton2 {
+        width: 80vw;
+    }
+
+    #botonA, #botonB {
+        left: 10vw;
+    } 
+
+    #botonC {
+        top: 80vh;
+        left: 10vw;
+    } 
+
+    #botonD {
+        top: 90vh;
+        left: 10vw;
+    }
+
+    .letra {
+        font-size: 2.5em;
+    }
+
+    #let1, #let2, #let3, #let4, 
+    #let5, #let6, #let7, #let8 {
+        top: 65vh;
+    }
+
+    #let1 {
+        left: 8vw;
+    }
+
+    #let2 {
+        left: 19vw;
+    }
+
+    #let3 {
+        left: 30vw;
+    }
+
+    #let4 {
+        left: 41vw;
+    }
+
+    #let5 {
+        left: 52vw;
+    }
+
+    #let6 {
+
+        left: 63vw;
+    }
+
+    #let7 {
+        left: 74vw;
+    }
+
+    #let8 {
+        left: 85vw;
+    }
+
+    #pista {
+        font-size: 3.4em;
+        top: 65vh;
+        left: 8vw;
+    }
+
+    #letErroneas {
+        top: 74vh;
+        left: 8vw;
+    }
+
+    #resultado {
+        font-size: 3em;
+        top: 35vh;
+        left: 22vw;
     }
 }

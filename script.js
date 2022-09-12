@@ -1,6 +1,7 @@
 var palabra = "";
 var clue = "";
 var letErroneas = "";
+var adivinadas= "";
 var asistertos = 0;
 var errores = 0;
 var correcta = false;
@@ -13,16 +14,17 @@ function mostrar() {
 }
 
 function limpiar() {
-	// body...
+	// Limpia canvas, mensajes de identificadores y vacia variables.
 	var pantalla = document.querySelector("canvas");
 	var trazo = pantalla.getContext("2d");
 	trazo.clearRect(0,0,360,360);
-	trazo.fillStyle = "lightgrey";
+	trazo.fillStyle = "#F3F5FC";
     trazo.fillRect(0,0,360,360);
-    
+
 	palabra = "";
 	clue = "";
 	letErroneas = "";
+	adivinadas= "";
 	asistertos = 0;
 	errores = 0;
 
@@ -40,14 +42,23 @@ function limpiar() {
 	document.getElementById("letErroneas").innerHTML = "";
 }
 
+function sortearPalabra(dict){
+	// Selecciona una palabra al azar.
+	var sorteada = Math.floor(Math.random()*dict.length);
+	palabra = dict[sorteada];
+}
+
 function iniciarJuego(argument) {
-	// body...
-	palabra = "ACARREAR";
+	// Muestra frame de juego con lineas pista.
+	dict = ["CAPTURAR","SOSTENER","JUNTEAR","ADHESIÓN","OQUEDAD","GRIETA"];
+	
 	mostrar();
 	bloque1.style.display = "none";
 	bloque2.style.display = "none";
 	bloque3.style.display = "block";
 
+	limpiar();
+	sortearPalabra(dict);
 	mostraPista(palabra);
 	dibujarAhorcado(0);
 
@@ -58,12 +69,14 @@ function reiniciarJuego () {
 	iniciarJuego();
 }
 
-function agregarPalabra(argument) {
+function agregarPalabra(tecla) {
 	// body...
+	palabra = "";
+
 	mostrar();
 	bloque1.style.display = "none";
 	bloque2.style.display = "block";
-	bloque3.style.display = "none";
+	bloque3.style.display = "none";	
 }
 
 function guardar(argument) {
@@ -77,7 +90,7 @@ function guardar(argument) {
 }
 
 function cancelar(argument) {
-	// body...
+	// Cancela juego y vuelve a frame principal.
 	mostrar();
 	bloque1.style.display = "block";
 	bloque2.style.display = "none";
@@ -87,21 +100,22 @@ function cancelar(argument) {
 }
 
 function desistir(argument) {
-	// body...
+	// Regresa a frame principal.
 	mostrar();
 	bloque1.style.display = "block";
 	bloque2.style.display = "none";
 	bloque3.style.display = "none";
 
+	guardando = false;
 	limpiar();
 }
 
 function dibujarAhorcado(error) {
-	// body...
+	// Va dibujando ahorcado segun errores.
 	var pantalla = document.querySelector("canvas");
 	var trazo = pantalla.getContext("2d");
 
-	trazo.strokeStyle = "darkblue";   //propiedad
+	trazo.strokeStyle = "darkblue";
 	trazo.beginPath();
 	trazo.lineWidth = 5;
 	console.log(error);
@@ -165,7 +179,7 @@ function dibujarAhorcado(error) {
 }
 
 function mostraPista() {
-	// body...
+	// Muestra numero de letras de la palabra con lineas.
 	document.getElementById("pista").innerHTML = "";
 	for (var i = 0; i < palabra.length; i++) {
 		clue += "_ ";		
@@ -173,76 +187,103 @@ function mostraPista() {
 	document.getElementById("pista").innerHTML = clue;
 }
 
+function revisarAdivinadas(event) {
+	var repetida = false;
+
+	for (var i = 0; i < adivinadas.length; i++) {
+		if (event == adivinadas[i]) {
+			repetida = true;
+			i = adivinadas.length;
+		}		
+	}
+	if (repetida == false) {
+		teclaPulsada(event);
+
+	}
+}
+
 function revisarTecla (teclaPulsada) {
 	//Muestra letra si coincidio con la tecla pulsada.
 	correcta = false;
 
 	if (teclaPulsada == palabra[0]) {
-		document.getElementById("let1").innerHTML = palabra[0];
+		document.getElementById("let1").innerHTML = teclaPulsada;
+		adivinadas += teclaPulsada;
 		correcta = true;
 		asistertos++;
 	}
 
 	if (teclaPulsada == palabra[1]) {
 		document.getElementById("let2").innerHTML = palabra[1];
+		adivinadas += teclaPulsada;
 		correcta = true;
 		asistertos++;
 	}
 	
 	if (teclaPulsada == palabra[2]) {
 		document.getElementById("let3").innerHTML = palabra[2];
+		adivinadas += teclaPulsada;
 		correcta = true;
 		asistertos++;
 	}
 
 	if (teclaPulsada == palabra[3]) {
 		document.getElementById("let4").innerHTML = palabra[3];
+		adivinadas += teclaPulsada;
 		correcta = true;
 		asistertos++;
 	}
 	
 	if (teclaPulsada == palabra[4]) {
 		document.getElementById("let5").innerHTML = palabra[4];
+		adivinadas += teclaPulsada;
 		correcta = true;
 		asistertos++;
 	}
 
 	if (teclaPulsada == palabra[5]) {
 		document.getElementById("let6").innerHTML = palabra[5];
+		adivinadas += teclaPulsada;
 		correcta = true;
 		asistertos++;
 	}
 	
 	if (teclaPulsada == palabra[6]) {
 		document.getElementById("let7").innerHTML = palabra[6];
+		adivinadas += teclaPulsada;
 		correcta = true;
 		asistertos++;
 	}
 
 	if (teclaPulsada == palabra[7]) {
 		document.getElementById("let8").innerHTML = palabra[7];
+		adivinadas += teclaPulsada;
 		correcta = true;
 		asistertos++;
 	}
+	console.log("van " + asistertos);
 }
 
 function teclaPulsada (event) {
 	//Almacenamos en valor de la tecla pulsada
 	var teclaPulsada = event;
-	
-	var pos = 0;
 
-	if (errores <= 7) {
-		revisarTecla(teclaPulsada);
+	for (var i = 0; i < palabra.length; i++) {
+		if (errores < 7 && palabra[i] != teclaPulsada) {
+			revisarTecla(teclaPulsada);
+			i = palabra.length;
+		}
 	}
-
-	if (asistertos == palabra.length) {
+	
+	if (asistertos == palabra.length && errores < 7) {
 		// Ganaste...
 		document.getElementById("resultado").innerHTML = "Ganaste !";
+		document.getElementById("letErroneas").innerHTML = "Muchas felicidades";
 		console.log("ganaste");
+		errores = 8;
 	}
 
-	if (errores<=7 && correcta == false) {
+	if (errores < 7 && correcta == false) {
 		letErroneas += teclaPulsada + " ";
 		errores ++;
 
@@ -252,6 +293,7 @@ function teclaPulsada (event) {
 	if (errores == 7) {
 		// Perdiste...
 		document.getElementById("resultado").innerHTML = "Perdiste !";
+		document.getElementById("letErroneas").innerHTML = "Fin del juego";
 		console.log("perdiste");
 	}
 	document.getElementById("letErroneas").innerHTML = letErroneas;	
@@ -259,7 +301,11 @@ function teclaPulsada (event) {
 
 document.addEventListener('keypress', (event) => {
 	var tecla = event.key.toUpperCase();
-	console.log("Tecla precionada: " + tecla);
+	var abc = "QWEÉRTYUÚIÍOÓPAÁSDFGHJKLÑZXCVBNM";
 
-	teclaPulsada(tecla);
+	for (var i = 0; i < abc.length; i++) {
+		if (abc[i] == tecla) {
+			revisarAdivinadas(tecla);
+		}
+	}
 });
