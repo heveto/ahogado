@@ -5,6 +5,8 @@ var adivinadas= "";
 var asistertos = 0;
 var errores = 0;
 var correcta = false;
+var dict = ["APERTURA","CAPTURAR","SOSTENER","JUNTEAR","ADHESION","OQUEDAD",
+"GRIETA","AZURITA","ESTUCO","SONRISA","AXIOMA","DOCTRINA","FILTRADO","APILADO"];
 
 function mostrar() {
 	// Habilita selección de cada frame.
@@ -50,8 +52,7 @@ function sortearPalabra(dict){
 
 function iniciarJuego(argument) {
 	// Muestra frame de juego con lineas pista.
-	dict = ["CAPTURAR","SOSTENER","JUNTEAR","ADHESIÓN","OQUEDAD","GRIETA"];
-	
+		
 	mostrar();
 	bloque1.style.display = "none";
 	bloque2.style.display = "none";
@@ -61,7 +62,6 @@ function iniciarJuego(argument) {
 	sortearPalabra(dict);
 	mostraPista(palabra);
 	dibujarAhorcado(0);
-
 }
 
 function reiniciarJuego () {	
@@ -70,26 +70,35 @@ function reiniciarJuego () {
 }
 
 function agregarPalabra(tecla) {
-	// body...
+	// Muestra frame para agregar palabras.
 	palabra = "";
 
 	mostrar();
 	bloque1.style.display = "none";
 	bloque2.style.display = "block";
-	bloque3.style.display = "none";	
+	bloque3.style.display = "none";
+
+	document.querySelector("#cadena").value = "";
 }
 
-function guardar(argument) {
-	// body...
-	mostrar();
-	bloque1.style.display = "none";
-	bloque2.style.display = "none";
-	bloque3.style.display = "block";
+function guardar() {
+	// Agrega palabra de hasta 8 letras al diccionario.
+	var palabraNueva = document.querySelector("#cadena").value.toUpperCase();
+	var long = palabraNueva.length;
 
-	limpiar();
+	if (long < 9) {
+		dict.push(palabraNueva);
+		limpiar();
+		iniciarJuego();
+	}
+	
+	if (long > 8) {
+		alert("No fue agregada, por favor ingrese una palabra de hasta 8 letras.");
+		document.querySelector("#cadena").value = "";
+	}	
 }
 
-function cancelar(argument) {
+function cancelar() {
 	// Cancela juego y vuelve a frame principal.
 	mostrar();
 	bloque1.style.display = "block";
@@ -99,15 +108,9 @@ function cancelar(argument) {
 	limpiar();
 }
 
-function desistir(argument) {
-	// Regresa a frame principal.
-	mostrar();
-	bloque1.style.display = "block";
-	bloque2.style.display = "none";
-	bloque3.style.display = "none";
-
-	guardando = false;
-	limpiar();
+function desistir() {
+	// Regresa a frame principal a travez de cancelar.
+	cancelar();
 }
 
 function dibujarAhorcado(error) {
@@ -118,7 +121,6 @@ function dibujarAhorcado(error) {
 	trazo.strokeStyle = "darkblue";
 	trazo.beginPath();
 	trazo.lineWidth = 5;
-	console.log(error);
 
 	switch(error) {
         case 0: // horca
@@ -188,6 +190,7 @@ function mostraPista() {
 }
 
 function revisarAdivinadas(event) {
+	// Revisa si ya se uso la letra.
 	var repetida = false;
 
 	for (var i = 0; i < adivinadas.length; i++) {
@@ -196,9 +199,16 @@ function revisarAdivinadas(event) {
 			i = adivinadas.length;
 		}		
 	}
+
+	for (var i = 0; i < letErroneas.length; i++) {
+		if (event == letErroneas[i]) {
+			repetida = true;
+			i = letErroneas.length;
+		}		
+	}
+
 	if (repetida == false) {
 		teclaPulsada(event);
-
 	}
 }
 
@@ -261,11 +271,10 @@ function revisarTecla (teclaPulsada) {
 		correcta = true;
 		asistertos++;
 	}
-	console.log("van " + asistertos);
 }
 
 function teclaPulsada (event) {
-	//Almacenamos en valor de la tecla pulsada
+	//Esta función lleva la lógica del juego.
 	var teclaPulsada = event;
 
 	for (var i = 0; i < palabra.length; i++) {
@@ -276,32 +285,28 @@ function teclaPulsada (event) {
 	}
 	
 	if (asistertos == palabra.length && errores < 7) {
-		// Ganaste...
+		// Ganaste.
 		document.getElementById("resultado").innerHTML = "Ganaste !";
-		document.getElementById("letErroneas").innerHTML = "Muchas felicidades";
-		console.log("ganaste");
 		errores = 8;
 	}
 
 	if (errores < 7 && correcta == false) {
 		letErroneas += teclaPulsada + " ";
 		errores ++;
-
 		dibujarAhorcado(errores);
 	}
 
 	if (errores == 7) {
-		// Perdiste...
-		document.getElementById("resultado").innerHTML = "Perdiste !";
-		document.getElementById("letErroneas").innerHTML = "Fin del juego";
-		console.log("perdiste");
+		// Perdiste.
+		document.getElementById("resultado").innerHTML = "Fin del juego";		
 	}
 	document.getElementById("letErroneas").innerHTML = letErroneas;	
 }
 
 document.addEventListener('keypress', (event) => {
+	// Espera y revisa presion de alguna tecla.
 	var tecla = event.key.toUpperCase();
-	var abc = "QWEÉRTYUÚIÍOÓPAÁSDFGHJKLÑZXCVBNM";
+	var abc = "QWERTYUIOPASDFGHJKLÑZXCVBNM";
 
 	for (var i = 0; i < abc.length; i++) {
 		if (abc[i] == tecla) {

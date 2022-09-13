@@ -177,7 +177,7 @@
         position: absolute;
         top: 58vh;
         left: 32vw;
-        font-size: 5.2em;
+        font-size: 5.4em;
         font-weight: bold;
     }
 
@@ -193,7 +193,6 @@
 @media screen and (max-width: 940px) {
 
     .contenedor {
-        width: 100vh;
         height: 145vh;
     }
 
@@ -203,11 +202,11 @@
     }
 
     .boton1, .boton2 {
-        width: 33vw;
+        width: 30vw;
     }
 
     #botonA, #botonB {
-        left: 50vw;
+        left: 36vw;
     }
 
     #botonC {
@@ -267,9 +266,12 @@
 @media screen and (max-width: 580px) {
 
     .contenedor {
-        width: 100vw;
         height: 100vh;
         background: #F3F5FC;
+    }
+
+    .logo {      
+        top: 0.5em;
     }
 
     canvas {
